@@ -34,6 +34,6 @@
     <?php include __DIR__ . '/../../includes/footer.php'; ?>
 
     </div>
-<script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/hamburguesa.js" defer></script>
+    <script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/hamburguesa.js" defer></script>
 </body>
 </html>
