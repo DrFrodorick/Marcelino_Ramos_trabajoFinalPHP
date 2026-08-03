@@ -14,51 +14,51 @@
 
 </head>
 <body>
-<main> 
-<?php include __DIR__ . "/../includes/navbar.php"; ?>
+    <main> 
+        <?php include __DIR__ . "/../includes/navbar.php"; ?>
 
-<div class="perfil-container">
-    <h2>Mis Citaciones</h2>
+        <div class="perfil-container">
+            <h2>Mis Citaciones</h2>
 
-    <?php if ($mensaje !== ""): ?>
-        <p class="mensaje"><?= $mensaje ?></p>
-    <?php endif; ?>
+            <?php if ($mensaje !== ""): ?>
+                <p class="mensaje"><?= $mensaje ?></p>
+            <?php endif; ?>
 
-    <!-- CREAR CITA -->
-    <div class="perfil-section">
-        <form method="POST">
-            <label>Fecha de la cita:</label>
-            <input type="date" name="fecha_cita">
+            <!-- CREAR CITA -->
+            <div class="perfil-section">
+                <form method="POST">
+                    <label>Fecha de la cita:</label>
+                    <input type="date" name="fecha_cita">
 
-            <label>Motivo:</label>
-            <input type="text" name="motivo">
+                    <label>Motivo:</label>
+                    <input type="text" name="motivo">
 
-            <button type="submit" name="crear_cita" class="btn-guardar">Crear cita</button>
-        </form>
-    </div>
+                    <button type="submit" name="crear_cita" class="btn-guardar">Crear cita</button>
+                </form>
+            </div>
 
-    <h2>Citas programadas</h2>
+            <h2>Citas programadas</h2>
 
-    <?php while ($cita = $citas->fetch_assoc()): ?>
-        <div class="perfil-section">
-            <form method="POST">
-                <label>Fecha:</label>
-                <input type="date" name="fecha_cita" value="<?= $cita['fecha_cita'] ?>">
+            <?php while ($cita = $citas->fetch_assoc()): ?>
+                <div class="perfil-section">
+                    <form method="POST">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha_cita" value="<?= $cita['fecha_cita'] ?>">
 
-                <label>Motivo:</label>
-                <input type="text" name="motivo" value="<?= $cita['motivo_cita'] ?>">
+                        <label>Motivo:</label>
+                        <input type="text" name="motivo" value="<?= $cita['motivo_cita'] ?>">
 
-                <input type="hidden" name="idCita" value="<?= $cita['idCita'] ?>">
+                        <input type="hidden" name="idCita" value="<?= $cita['idCita'] ?>">
 
-                <button type="submit" name="editar_cita" class="btn-guardar">Modificar</button>
-                <button type="submit" name="borrar_cita" class="btn-borrar">Eliminar</button>
-            </form>
+                        <button type="submit" name="editar_cita" class="btn-guardar">Modificar</button>
+                        <button type="submit" name="borrar_cita" class="btn-borrar">Eliminar</button>
+                    </form>
+                </div>
+            <?php endwhile; ?>
+
         </div>
-    <?php endwhile; ?>
-
-</div>
-</main>
-<?php include __DIR__ . "/../includes/footer.php"; ?>
-<script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/hamburguesa.js" defer></script>
+    </main>
+    <?php include __DIR__ . "/../includes/footer.php"; ?>
+    <script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/hamburguesa.js" defer></script>
 </body>
 </html>
