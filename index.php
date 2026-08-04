@@ -179,9 +179,9 @@ $controller = new NoticiasController($model);  // Controlador de noticias
     <header class="hero">
 
         <!-- CARRUSEL -->
-        <div class="hero-slide" style="background-image: url('assets/images/carrusel_hero/hero1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('assets/images/carrusel_hero/hero2.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('assets/images/carrusel_hero/hero3.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/carrusel_hero/hero1.jpg');" width="4256" height="2832"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/carrusel_hero/hero2.jpg');" width="5906" height="3937"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/carrusel_hero/hero3.jpg');" width="2690" height="4033"></div>
 
         <!-- BOTONES DEL CARRUSEL -->
         <button id="prev-btn" class="hero-btn">‹</button>
