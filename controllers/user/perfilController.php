@@ -13,7 +13,7 @@ class PerfilController {
 
         // Seguridad: si no hay sesión iniciada, se redirige al login
         if (!isset($_SESSION['idUser'])) {
-            header("Location: /trabajoPHP/login.php");
+            header("Location: " . BASE_URL . "/views/login.php");
             exit;
         }
         

@@ -1,6 +1,7 @@
 <?php
 # Incluir/vincular los parámetros de conexión
-require_once __DIR__.'/.env.php';
+require_once __DIR__ . '/../../config/app.php';
+require_once __DIR__ . '/.env.php';
 
 
 

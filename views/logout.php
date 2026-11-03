@@ -10,7 +10,3 @@ session_destroy();
 // Redirigir al usuario al index como visitante
 header("Location: ../index.php");
 exit();
-?>
-
-
-?>

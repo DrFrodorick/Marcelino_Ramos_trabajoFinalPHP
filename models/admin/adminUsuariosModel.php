@@ -138,11 +138,17 @@ class AdminUsuariosModel {
     public function deleteUser($id) {
         global $conn;
 
-        // Primero se borra el login del usuario
-        $conn->query("DELETE FROM users_login WHERE idUser = $id");
+        $id = (int) $id;
+
+        // Primero se borra el login del usuario (consulta preparada)
+        $stmt = $conn->prepare("DELETE FROM users_login WHERE idUser = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
 
         // Luego se borran los datos personales
-        return $conn->query("DELETE FROM users_data WHERE idUser = $id");
+        $stmt = $conn->prepare("DELETE FROM users_data WHERE idUser = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
         // Devuelve true/false según si la eliminación fue correcta
     }
 }

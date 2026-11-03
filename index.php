@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/controllers/db_conection/db_conn.php';
-require_once __DIR__ . '../controllers/functions/db_functions.php';
-require_once __DIR__ . '/models/Noticias_model.php';
+require_once __DIR__ . '/controllers/functions/db_functions.php';
+require_once __DIR__ . '/models/noticias_model.php';
 require_once __DIR__ . '/controllers/noticiasController.php';
 // Carga las dependencias necesarias para manejar noticias y la conexión a la BD
 
@@ -163,12 +163,12 @@ $controller = new NoticiasController($model);  // Controlador de noticias
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/favicon-96x96.png" sizes="96x96" >
-    <link rel="icon" type="image/svg+xml" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/favicon.svg" >
-    <link rel="shortcut icon" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/apple-touch-icon.png" >
+    <link rel="icon" type="image/png" href="<?= BASE_URL ?>/assets/favicon/favicon-96x96.png" sizes="96x96" >
+    <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/assets/favicon/favicon.svg" >
+    <link rel="shortcut icon" href="<?= BASE_URL ?>/assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>/assets/favicon/apple-touch-icon.png" >
     <meta name="apple-mobile-web-app-title" content="Servicio Digital" >
-    <link rel="manifest" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/site.webmanifest" >
+    <link rel="manifest" href="<?= BASE_URL ?>/assets/favicon/site.webmanifest" >
 
 
 </head>
@@ -234,7 +234,7 @@ $controller = new NoticiasController($model);  // Controlador de noticias
 
                     <?php
                     // La imagen siempre existe
-                    $rutaImagen = "/Marcelino_Ramos_trabajoFinalPHP/uploads/" . $row['imagen'];
+                    $rutaImagen = BASE_URL . "/uploads/" . $row['imagen'];
                     ?>
 
                     <div class="card noticia">
@@ -283,12 +283,12 @@ $controller = new NoticiasController($model);  // Controlador de noticias
     <section class="cta">
         <h2>¿Listo para impulsar tu proyecto?</h2>
         <p>Estamos preparados para ayudarte a dar el siguiente paso con soluciones digitales a medida.</p>
-        <a href="/Marcelino_Ramos_trabajoFinalPHP/views/registro.php" class="btn cta-btn">Registrarme</a>
+        <a href="<?= BASE_URL ?>/views/registro.php" class="btn cta-btn">Registrarme</a>
     </section>
 
     <?php include __DIR__ . '/includes/footer.php'; ?>
-    <script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/main.js" defer></script>
-    <script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/hamburguesa.js" defer></script>
+    <script src="<?= BASE_URL ?>/assets/js/main.js" defer></script>
+    <script src="<?= BASE_URL ?>/assets/js/hamburguesa.js" defer></script>
 </div>
 </body>
 </html>
