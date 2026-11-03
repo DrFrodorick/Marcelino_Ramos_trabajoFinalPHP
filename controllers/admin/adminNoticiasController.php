@@ -32,11 +32,12 @@ class adminNoticiasController {
         // ============================
         // SUBIR IMAGEN
         // ============================
-        $imagen = $_FILES["imagen"];
-        $nombreImagen = time() . "_" . basename($imagen["name"]);
-        $rutaDestino = __DIR__ . "/../../uploads/" . $nombreImagen;
+        $nombreImagen = $this->subirImagen($_FILES["imagen"] ?? null);
 
-        move_uploaded_file($imagen["tmp_name"], $rutaDestino);
+        if ($nombreImagen === null) {
+            header("Location: index.php?page=noticias-administracion&msg=error_crear");
+            exit;
+        }
 
         // ============================
         // GUARDAR EN BD
@@ -82,11 +83,13 @@ class adminNoticiasController {
         // ============================
         if (!empty($_FILES["imagen"]["name"])) {
 
-            $imagen = $_FILES["imagen"];
-            $nombreImagen = time() . "_" . basename($imagen["name"]);
-            $rutaDestino = __DIR__ . "/../../uploads/" . $nombreImagen;
+            $nuevaImagen = $this->subirImagen($_FILES["imagen"]);
 
-            move_uploaded_file($imagen["tmp_name"], $rutaDestino);
+            if ($nuevaImagen === null) {
+                header("Location: index.php?page=noticias-administracion&msg=error_editar");
+                exit;
+            }
+            $nombreImagen = $nuevaImagen;
         }
 
         // ============================
@@ -120,5 +123,44 @@ class adminNoticiasController {
             header("Location: index.php?page=noticias-administracion&msg=error_borrar");
         }
         exit;
+    }
+
+    /* ============================================================
+       SUBIDA SEGURA DE IMÁGENES
+       - Solo acepta imágenes reales (se comprueba el contenido, no solo la extensión).
+       - Tamaño máximo: 2 MB.
+       - Genera un nombre aleatorio con la extensión correcta, así nunca
+         se puede subir un archivo .php u otro ejecutable.
+       Devuelve el nombre del archivo guardado, o null si no es válido.
+    ============================================================ */
+    private function subirImagen($archivo) {
+        if (!$archivo || ($archivo["error"] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+            return null;
+        }
+
+        if ($archivo["size"] > 2 * 1024 * 1024) {
+            return null;
+        }
+
+        $tiposPermitidos = [
+            "image/jpeg" => "jpg",
+            "image/png"  => "png",
+            "image/webp" => "webp",
+            "image/gif"  => "gif",
+        ];
+
+        $info = @getimagesize($archivo["tmp_name"]);
+        if ($info === false || !isset($tiposPermitidos[$info["mime"]])) {
+            return null;
+        }
+
+        $nombre = time() . "_" . bin2hex(random_bytes(8)) . "." . $tiposPermitidos[$info["mime"]];
+        $destino = __DIR__ . "/../../uploads/" . $nombre;
+
+        if (!move_uploaded_file($archivo["tmp_name"], $destino)) {
+            return null;
+        }
+
+        return $nombre;
     }
 }

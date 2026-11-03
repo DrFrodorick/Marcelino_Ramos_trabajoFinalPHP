@@ -4,10 +4,16 @@ Aplicación web para una empresa de servicios digitales con área privada de usu
 
 Proyecto final del módulo de PHP del ciclo de **Técnico Superior en Desarrollo de Aplicaciones Web**.
 
-<!-- Cuando el proyecto esté publicado, añade aquí el enlace a la demo y una captura:
-**Demo:** https://tu-subdominio.infinityfreeapp.com
-![Captura de la página de inicio](docs/captura-inicio.png)
--->
+## Demo en vivo
+
+**https://marcelino-servicios.infinityfreeapp.com**
+
+| Rol | Usuario | Contraseña |
+|-----|---------|------------|
+| Administrador | `demo_admin` | `Demo_2026` |
+| Usuario | `demo_usuario` | `Demo_2026` |
+
+> Alojado en un hosting gratuito: la primera carga puede tardar unos segundos.
 
 ## Funcionalidades
 
@@ -38,6 +44,7 @@ Proyecto final del módulo de PHP del ciclo de **Técnico Superior en Desarrollo
 - Consultas preparadas (`prepare` + `bind_param`) para evitar la inyección SQL.
 - Salida escapada con `htmlspecialchars()` para evitar ataques XSS.
 - Control de acceso por sesión y por rol (`admin` / `user`).
+- Subida de imágenes validada por contenido (solo JPG, PNG, WebP y GIF de hasta 2 MB) con nombre aleatorio, y carpeta `uploads/` sin permiso de ejecución.
 - Credenciales de la base de datos fuera del repositorio (`.env.php` en `.gitignore`) y protegidas con `.htaccess`.
 
 ## Estructura del proyecto
@@ -53,7 +60,7 @@ Proyecto final del módulo de PHP del ciclo de **Técnico Superior en Desarrollo
 ├── includes/              # Cabecera de navegación y pie
 ├── assets/                # CSS, JavaScript y favicon
 ├── uploads/               # Imágenes subidas desde el panel
-└── database/              # Script SQL con la estructura y datos de ejemplo
+└── database/              # Script SQL con la estructura y los datos de demostración
 ```
 
 ## Instalación en local (XAMPP)

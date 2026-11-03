@@ -1,0 +1,5 @@
+# Carpeta de imágenes subidas: nunca debe ejecutar código
+<FilesMatch "\.(php|php\d|phtml|phar|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes

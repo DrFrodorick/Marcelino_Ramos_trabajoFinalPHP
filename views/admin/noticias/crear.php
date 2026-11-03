@@ -12,7 +12,7 @@
     <textarea name="texto" required></textarea>
 
     <label>Imagen *</label>
-    <input type="file" name="imagen" required>
+    <input type="file" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif" required>
 
     <button class="crear-btn">Publicar noticia</button>
 </form>

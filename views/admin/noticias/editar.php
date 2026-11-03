@@ -17,7 +17,7 @@
     <img src="<?= BASE_URL ?>/uploads/<?= htmlspecialchars($noticia['imagen']) ?>" width="150">
 
     <label>Nueva imagen (opcional):</label>
-    <input type="file" name="imagen">
+    <input type="file" name="imagen" accept="image/jpeg,image/png,image/webp,image/gif">
 
     <button class="crear-btn">Guardar cambios</button>
 </form>
