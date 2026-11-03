@@ -10,6 +10,18 @@
     <p class="alerta-ok">✔ Noticia eliminada correctamente.</p>
 <?php endif; ?>
 
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_crear"): ?>
+    <p class="mensaje-error">✖ No se pudo crear la noticia. Comprueba que la imagen sea JPG, PNG, WebP o GIF de máximo 2 MB y que el título no esté repetido.</p>
+<?php endif; ?>
+
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_editar"): ?>
+    <p class="mensaje-error">✖ No se pudo editar la noticia. Si has cambiado la imagen, debe ser JPG, PNG, WebP o GIF de máximo 2 MB.</p>
+<?php endif; ?>
+
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_borrar"): ?>
+    <p class="mensaje-error">✖ No se pudo eliminar la noticia.</p>
+<?php endif; ?>
+
 <div class="crear-usuario-container">
     <a class="crear-usuario-btn"
        href="index.php?page=noticias-administracion&action=crear">
