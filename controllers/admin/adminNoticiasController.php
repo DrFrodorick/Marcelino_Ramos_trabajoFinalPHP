@@ -2,6 +2,7 @@
 class adminNoticiasController {
 
     private $model;
+    private $motivoErrorImagen = "";
 
     public function __construct($model) {
         $this->model = $model;
@@ -35,7 +36,7 @@ class adminNoticiasController {
         $nombreImagen = $this->subirImagen($_FILES["imagen"] ?? null);
 
         if ($nombreImagen === null) {
-            header("Location: index.php?page=noticias-administracion&msg=error_crear");
+            header("Location: index.php?page=noticias-administracion&msg=error_imagen&motivo=" . $this->motivoErrorImagen);
             exit;
         }
 
@@ -86,7 +87,7 @@ class adminNoticiasController {
             $nuevaImagen = $this->subirImagen($_FILES["imagen"]);
 
             if ($nuevaImagen === null) {
-                header("Location: index.php?page=noticias-administracion&msg=error_editar");
+                header("Location: index.php?page=noticias-administracion&msg=error_imagen&motivo=" . $this->motivoErrorImagen);
                 exit;
             }
             $nombreImagen = $nuevaImagen;
@@ -135,10 +136,13 @@ class adminNoticiasController {
     ============================================================ */
     private function subirImagen($archivo) {
         if (!$archivo || ($archivo["error"] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+            $codigo = $archivo["error"] ?? UPLOAD_ERR_NO_FILE;
+            $this->motivoErrorImagen = in_array($codigo, [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE]) ? "tamano" : "subida_" . $codigo;
             return null;
         }
 
         if ($archivo["size"] > 2 * 1024 * 1024) {
+            $this->motivoErrorImagen = "tamano";
             return null;
         }
 
@@ -151,6 +155,7 @@ class adminNoticiasController {
 
         $info = @getimagesize($archivo["tmp_name"]);
         if ($info === false || !isset($tiposPermitidos[$info["mime"]])) {
+            $this->motivoErrorImagen = "tipo";
             return null;
         }
 
@@ -158,6 +163,8 @@ class adminNoticiasController {
         $destino = __DIR__ . "/../../uploads/" . $nombre;
 
         if (!move_uploaded_file($archivo["tmp_name"], $destino)) {
+            error_log("No se pudo mover la imagen subida a " . $destino);
+            $this->motivoErrorImagen = "guardar";
             return null;
         }
 

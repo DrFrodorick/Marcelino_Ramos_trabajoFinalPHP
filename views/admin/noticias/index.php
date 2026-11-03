@@ -10,6 +10,30 @@
     <p class="alerta-ok">✔ Noticia eliminada correctamente.</p>
 <?php endif; ?>
 
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_imagen"):
+    $motivos = [
+        "tamano"  => "La imagen pesa más de 2 MB.",
+        "tipo"    => "El archivo no es una imagen válida (solo JPG, PNG, WebP o GIF).",
+        "guardar" => "El servidor no pudo guardar la imagen en la carpeta uploads.",
+    ];
+    $motivo = $_GET["motivo"] ?? "";
+    $texto = $motivos[$motivo] ?? "Error al subir el archivo (código: " . htmlspecialchars($motivo) . ").";
+?>
+    <p class="mensaje-error">✖ No se pudo guardar la noticia. <?= $texto ?></p>
+<?php endif; ?>
+
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_crear"): ?>
+    <p class="mensaje-error">✖ No se pudo crear la noticia. Comprueba que el título no esté repetido.</p>
+<?php endif; ?>
+
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_editar"): ?>
+    <p class="mensaje-error">✖ No se pudo editar la noticia.</p>
+<?php endif; ?>
+
+<?php if (isset($_GET["msg"]) && $_GET["msg"] === "error_borrar"): ?>
+    <p class="mensaje-error">✖ No se pudo eliminar la noticia.</p>
+<?php endif; ?>
+
 <div class="crear-usuario-container">
     <a class="crear-usuario-btn"
        href="index.php?page=noticias-administracion&action=crear">
