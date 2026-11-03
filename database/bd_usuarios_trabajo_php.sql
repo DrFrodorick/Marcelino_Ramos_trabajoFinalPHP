@@ -18,7 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+-- Borra las tablas si ya existen, para poder reimportar el script sin errores
+--
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `citas`, `noticias`, `users_login`, `users_data`;
+SET FOREIGN_KEY_CHECKS = 1;
+
+--
 -- Base de datos: `bd_usuarios_trabajo_php`
+-- Datos de demostración. Usuarios: demo_admin / demo_usuario (contraseña: Demo_2026)
 --
 
 -- --------------------------------------------------------
@@ -39,10 +47,8 @@ CREATE TABLE `citas` (
 --
 
 INSERT INTO `citas` (`idCita`, `idUser`, `fecha_cita`, `motivo_cita`) VALUES
-(16, 11, '2026-07-31', 'mañana'),
-(17, 11, '2026-07-31', 'mañana2'),
-(18, 11, '2026-08-08', 'efgefe'),
-(20, 15, '2026-08-04', 'toma');
+(1, 2, '2026-12-10', 'Consulta sobre el rediseño de mi página web'),
+(2, 2, '2026-12-17', 'Revisión del posicionamiento SEO de mi tienda online');
 
 -- --------------------------------------------------------
 
@@ -64,20 +70,9 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `imagen`, `texto`, `fecha`, `idUser`) VALUES
-(1, 'hola hola', '1782896323_una lechuga estiliza.png', 'prueba prueba', '2026-07-01 00:00:00', 2),
-(2, 'seguimos probando dia treinta ', '', 'Prueba de noticia sin foto', '2026-07-01 00:00:00', 2),
-(8, '33333333333333', '1782903987_furgoneta-imagenes-10.jpg', '3333333333333333333333', '2026-07-01 13:06:27', 2),
-(9, 'isgouirsahgourhgoruhguor', '', 'uehuiewhufwehufwhufwhufwef', '2026-07-01 13:07:49', 2),
-(13, 'efffffffffffffffff', '', 'eeeeeeeeeeeeeeeeeeeeeeee', '2026-07-01 13:26:22', 2),
-(14, 'ooTIHU4PUhtuhgojngojhrghqrñ', '', 'uewhwruiopfghwerhtglwngkjdhsgosADHFGasngkjscfhgerafgareg', '2026-07-01 13:27:22', 2),
-(16, 'Noticia seria', '1782905783_furgoneta-imagenes-3.jpg', 'El texto aleatorio (o \"texto de relleno\") se utiliza para maquetar diseños y maquetar documentos. Los ejemplos más comunes son el clásico Lorem ipsum y las funciones automáticas de Microsoft Word, como =rand().Los generadores de texto aleatorio son útiles para visualizar el diseño sin distraerse con el contenido. Existen varios formatos y plataformas para crearlos:Lorem Ipsum estándar: Genera texto clásico en latín para maquetación de diseño web. Puedes crearlo al instante en Lipsum.Generador ciego: Para ajustar longitudes exactas o tipos de letra, puedes utilizar herramientas como Blind Text Generator.En Microsoft Word: Escribe =rand() seguido de Enter para obtener un texto de ejemplo, o =lorem() para texto en latín.Generador de texto con IA: Si buscas texto con sentido para blogs o correos electrónicos, puedes utilizar herramientas como el generador de textos de QuillBot.Si necesitas un párrafo específico o una longitud de caracteres determinada, avísame y te generaré el texto a medida.', '2026-07-01 13:36:23', 2),
-(17, 'hola hola admin', '1782983954_furgoneta-imagenes-10.jpg', 'gogogogogogo', '2026-07-02 11:19:14', 2),
-(19, '30 del siete ', 'Captura de pantalla 2026-06-05 225847.png', 'nueva noticia ', '2026-07-30 00:00:00', 2),
-(20, 'noticia con fecha y hora actual', 'Captura de pantalla 2026-06-05 224848.png', 'notica ', '2026-07-30 13:07:03', 2),
-(21, 'Prueba de noticia con imagen', '1785410082_Captura de pantalla 2026-06-05 224848.png', 'hola', '2026-07-30 13:14:42', 2),
-(22, 'foto jpg', '1785410347_icono_rojo.avif', 'jpg', '2026-07-30 13:19:07', 2),
-(23, 'Otra noticia con imagen', '1785410842_Captura de pantalla 2026-06-05 224848.png', 'hola noticia con imagen ', '2026-07-30 13:27:22', 2),
-(24, 'Prueba cuatro', '1785410992_Captura de pantalla 2026-06-05 224848.png', 'imagen ', '2026-07-30 13:29:52', 2);
+(1, 'Taller gratuito de transformación digital para pymes', '1785870485_imagen1.jpeg', 'Organizamos un taller práctico y gratuito para pequeñas empresas de Asturias que quieren dar el salto digital. Veremos cómo mejorar la presencia en internet, automatizar tareas del día a día y aprovechar las redes sociales para conseguir nuevos clientes. Plazas limitadas: reserva tu cita desde el área de clientes.', '2026-10-06 10:00:00', 1),
+(2, 'Nuevo servicio de diseño web a medida', '1785870538_imagen2.jpeg', 'Lanzamos un servicio de diseño y desarrollo web a medida pensado para negocios locales. Creamos páginas rápidas, adaptadas a móviles y fáciles de gestionar, con formularios de contacto, reservas online y analítica incluida.', '2026-10-20 09:30:00', 1),
+(3, 'Cinco consejos para elegir el dominio de tu negocio', '1785870567_imagen3.jpeg', 'El dominio es la primera impresión de tu empresa en internet. Te contamos cómo elegir uno corto, fácil de recordar y coherente con tu marca, qué extensión te conviene (.es, .com...) y por qué es importante registrarlo cuanto antes.', '2026-11-02 12:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -101,13 +96,8 @@ CREATE TABLE `users_data` (
 --
 
 INSERT INTO `users_data` (`idUser`, `nombre`, `apellidos`, `email`, `telefono`, `fecha_nacimiento`, `direccion`, `sexo`) VALUES
-(2, 'Oscar', 'Antori', 'ramosmartinezmarcelinoA@hotmail.com', '222222222', '2020-01-28', '111', 'H'),
-(5, 'Mario', '', 'mario@gmail.com', '', '0000-00-00', '', ''),
-(6, 'Maria', 'Pilar Rosario', 'holahola@gmail.com', '666666666', '1990-05-11', 'Rafael Altamira', 'mujer'),
-(9, 'Pilar', 'Maria Rosario', 'tralala@gmail.com', '666666666', '1991-11-11', 'Rafael Altamira', 'mujer'),
-(10, 'Maria', 'Pilas Pilas', 'lalalalalala@gmail.com', '666666666', '1991-11-11', 'Rafael Altamira', 'mujer'),
-(11, 'Marcelino', 'Ramos Martinez', 'ramosmartinezo@gmail.com', '648662470', '0000-00-00', 'Rafael Altamira', 'H'),
-(15, 'Antonio', 'Usuario', 'nada@gmail.com', '333333333', '1991-11-11', '111111', 'hombre');
+(1, 'Administrador', 'Demo', 'admin@demo.com', '600000001', '1990-01-01', 'Calle Uría 1, Oviedo', 'Otro'),
+(2, 'Usuario', 'Demo', 'usuario@demo.com', '600000002', '1995-06-15', 'Calle Mayor 10, Gijón', 'Otro');
 
 -- --------------------------------------------------------
 
@@ -128,10 +118,8 @@ CREATE TABLE `users_login` (
 --
 
 INSERT INTO `users_login` (`idLogin`, `idUser`, `usuario`, `password`, `rol`) VALUES
-(1, 2, 'Nuevo_usuario', '$2y$10$HDu4k/bmOiiNUIM7c6dv.eMbQSQT2aLbMk2jyDLDwN1ozVTIrWp3K', 'admin'),
-(4, 5, '', '$2y$10$OtHO0CvtQZc/DAj.oQempue7XLGazu3cJpNoFmKdvZAw4MwPpbB1S', 'user'),
-(8, 11, 'Usuario_administrativo', '$2y$10$gQeF6irrnBCQC.2dDmXRgeBbVv.loJ9MCVs3sJ3IlXEjeL/dgC59G', 'admin'),
-(12, 15, 'usuario_user', '$2y$10$QmfE6D66F5OnZ.Tvdb58gOd1X2Lggn67R7iyLtcO7QibaOfqix/wm', 'user');
+(1, 1, 'demo_admin', '$2y$10$RLbiQJfwi7O5GuZ5tdgg1u9zPmXisIMZ9K5dCDtYuM8RviDDc/t2O', 'admin'),
+(2, 2, 'demo_usuario', '$2y$10$4PWeepPTqz5IVBA9x3EGWenjeM1PoAejnBordJZhNZrIE5GbR7Xj2', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -175,25 +163,25 @@ ALTER TABLE `users_login`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users_data`
 --
 ALTER TABLE `users_data`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users_login`
 --
 ALTER TABLE `users_login`
-  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

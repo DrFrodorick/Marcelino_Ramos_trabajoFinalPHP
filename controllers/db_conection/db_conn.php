@@ -23,6 +23,9 @@ function db_conn(){
                 error_log("Fallo al conecar a la base de datos: " . $db_conn -> connect_error);
                 return null;
             }
+
+            # Usar UTF-8 completo para que tildes y eñes se guarden y muestren bien
+            $db_conn->set_charset('utf8mb4');
         } catch(Exception $e){
             # Registrar la exepción en el archivo log
             error_log("Error de conexión a la base de datos: " . $e->getMessage());

@@ -8,7 +8,7 @@
         </div>
 
         <div id="direccion">
-            <p>Dirección: Poligo Industrial Tebongo, Cangas del Narcea, Asturias</p>
+            <p>Dirección: Polígono Industrial Tebongo, Cangas del Narcea, Asturias</p>
         </div>
 
         <div id="aviso-legal">
