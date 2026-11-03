@@ -14,7 +14,7 @@
     <textarea name="texto" required><?= htmlspecialchars($noticia['texto']) ?></textarea>
 
     <label>Imagen actual:</label>
-    <img src="/Marcelino_Ramos_trabajoFinalPHP/uploads/<?= htmlspecialchars($noticia['imagen']) ?>" width="150">
+    <img src="<?= BASE_URL ?>/uploads/<?= htmlspecialchars($noticia['imagen']) ?>" width="150">
 
     <label>Nueva imagen (opcional):</label>
     <input type="file" name="imagen">

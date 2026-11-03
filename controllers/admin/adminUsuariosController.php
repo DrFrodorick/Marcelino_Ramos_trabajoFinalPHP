@@ -119,7 +119,7 @@ class AdminUsuariosController {
         ];
 
         if ($data["nombre"] === "" || $data["email"] === "") {
-            header("Location: usuarios-administracion.php?action=editar&id=$id&msg=error_campos");
+            header("Location: index.php?page=usuarios-administracion&action=editar&id=$id&msg=error_campos");
             exit;
         }
 
@@ -139,7 +139,7 @@ class AdminUsuariosController {
     public function borrar() {
 
         if (!isset($_GET["id"])) {
-            header("Location: usuarios-administracion.php?msg=error_id");
+            header("Location: index.php?page=usuarios-administracion&msg=error_id");
             exit;
         }
 

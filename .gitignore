@@ -1,0 +1,8 @@
+# Configuración con credenciales: nunca se sube al repositorio
+controllers/db_conection/.env.php
+
+# Archivos del sistema y de editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

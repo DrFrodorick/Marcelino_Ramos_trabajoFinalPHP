@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../controllers/RegistroController.php';
+require_once __DIR__ . '/../controllers/registroController.php';
 // Importa el controlador encargado de procesar el registro de usuarios
 
 $controller = new RegistroController();
@@ -20,14 +20,14 @@ if(session_status() == PHP_SESSION_NONE){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="/Marcelino_Ramos_trabajoFinalPHP/assets/css/styles.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/styles.css">
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/favicon-96x96.png" sizes="96x96" >
-    <link rel="icon" type="image/svg+xml" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/favicon.svg" >
-    <link rel="shortcut icon" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/favicon.ico" >
-    <link rel="apple-touch-icon" sizes="180x180" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/apple-touch-icon.png" >
+    <link rel="icon" type="image/png" href="<?= BASE_URL ?>/assets/favicon/favicon-96x96.png" sizes="96x96" >
+    <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/assets/favicon/favicon.svg" >
+    <link rel="shortcut icon" href="<?= BASE_URL ?>/assets/favicon/favicon.ico" >
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>/assets/favicon/apple-touch-icon.png" >
     <meta name="apple-mobile-web-app-title" content="Servicio Digital" >
-    <link rel="manifest" href="/Marcelino_Ramos_trabajoFinalPHP/assets/favicon/site.webmanifest" >
+    <link rel="manifest" href="<?= BASE_URL ?>/assets/favicon/site.webmanifest" >
 </head>
 <body>
 
@@ -83,13 +83,13 @@ if(session_status() == PHP_SESSION_NONE){
 
                 <p class="login-link">
                     ¿Ya tienes cuenta?  
-                    <a href="/Marcelino_Ramos_trabajoFinalPHP/views/login.php">Inicia sesión aquí</a>
+                    <a href="<?= BASE_URL ?>/views/login.php">Inicia sesión aquí</a>
                 </p>
 
             </form>
         </section>
 
     <?php include __DIR__ . "/../includes/footer.php"; ?>
-    <script src="/Marcelino_Ramos_trabajoFinalPHP/assets/js/hamburguesa.js" defer></script>
+    <script src="<?= BASE_URL ?>/assets/js/hamburguesa.js" defer></script>
 </body>
 </html>

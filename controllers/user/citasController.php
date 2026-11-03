@@ -18,7 +18,7 @@ class CitasController {
         // Inicia la sesión si aún no está iniciada
 
         if (!isset($_SESSION["idUser"]) || $_SESSION["rol"] !== "user") {
-            header("Location: /trabajoPHP/login.php");
+            header("Location: " . BASE_URL . "/views/login.php");
             exit();
         }
         // Si el usuario no está logueado o no es del rol "user", se le redirige al login
