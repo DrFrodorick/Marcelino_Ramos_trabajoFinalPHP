@@ -159,8 +159,18 @@ class adminNoticiasController {
             return null;
         }
 
+        // Ruta absoluta a uploads/ sin "..": algunos hostings (como InfinityFree)
+        // rechazan escribir en rutas que contienen "..".
+        $carpeta = dirname(__DIR__, 2) . "/uploads";
+
+        if (!is_dir($carpeta) || !is_writable($carpeta)) {
+            error_log("La carpeta de imágenes no existe o no tiene permisos de escritura: " . $carpeta);
+            $this->motivoErrorImagen = "carpeta";
+            return null;
+        }
+
         $nombre = time() . "_" . bin2hex(random_bytes(8)) . "." . $tiposPermitidos[$info["mime"]];
-        $destino = __DIR__ . "/../../uploads/" . $nombre;
+        $destino = $carpeta . "/" . $nombre;
 
         if (!move_uploaded_file($archivo["tmp_name"], $destino)) {
             error_log("No se pudo mover la imagen subida a " . $destino);

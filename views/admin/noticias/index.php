@@ -14,6 +14,7 @@
     $motivos = [
         "tamano"  => "La imagen pesa más de 2 MB.",
         "tipo"    => "El archivo no es una imagen válida (solo JPG, PNG, WebP o GIF).",
+        "carpeta" => "La carpeta uploads no existe o no tiene permisos de escritura.",
         "guardar" => "El servidor no pudo guardar la imagen en la carpeta uploads.",
     ];
     $motivo = $_GET["motivo"] ?? "";
